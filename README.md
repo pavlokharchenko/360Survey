@@ -18,16 +18,16 @@ When done properly, 360 is highly effective as a development tool. The feedback 
 
 Using a 360 degree feedback system for Performance Appraisal is a common practice, but not always a good idea. It is difficult to properly structure a 360 feedback process that creates an atmosphere of trust when you use 360 evaluations to measure performance. Moreover, 360 feedback focuses on behaviors and competencies more than on basic skills, job requirements, and performance objectives. These things are most appropriately addressed by an employee and his/her manager as part of an annual review and performance appraisal process. It is certainly possible and can be beneficial to incorporate 360 feedback into a larger performance management process, but only with clear communication on how the 360 feedback will be used.
 
-
 ##### What a 360 Feedback Survey Measures:
  - 360 feedback measures behaviors and competencies
  - 360 assessments provide feedback on how others perceive an employee
  - 360 feedback addresses skills such as listening, planning, and goal-setting
  - A 360 evaluation focuses on subjective areas such as teamwork, character, and leadership effectiveness
 
-
 ##### What 360 Feedback Surveys do not assess:
  - 360 feedback is not a way to measure employee performance objectives (MBOs)
  - 360 feedback is not a way to determine whether an employee is meeting basic job requirements
  - 360 feedback is not focused on basic technical or job-specific skills
  - 360 feedback should not be used to measure strictly objective things such as attendance, sales quotas, etc.
+
+General reqs: https://docs.google.com/document/d/1P00V9DeT2bD7nFRBDSwOFsJwvQ2GLTupswYjhjiTEeY/edit#heading=h.2r8px7okdmtq
