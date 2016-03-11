@@ -1,0 +1,24 @@
+group '360survey'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework:spring-webmvc:4.2.5.RELEASE'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    //LOGGING
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
+
+    //TEST
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
