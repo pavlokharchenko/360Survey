@@ -8,11 +8,11 @@ package com.survey.util;
  * @author Taras Danilchuk
  *
  */
-public final class Properties {
+public final class Constants {
 
 
 
-    private Properties() {
+    private Constants() {
         throw new UnsupportedOperationException();
     }
 }

@@ -16,6 +16,7 @@ import javax.servlet.ServletRegistration;
 
 public class AppInitializer implements WebApplicationInitializer {
     private static final Logger LOGGER = LogManager.getLogger(AppInitializer.class.getName());
+
     private static final String CONFIG_LOCATION = "com.survey.config";
 
     @Override
