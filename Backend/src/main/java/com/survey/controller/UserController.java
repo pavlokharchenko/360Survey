@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/add/", method = RequestMethod.POST, consumes = "application/json")
     public String addUser(@RequestBody UserDTO userDTO) {
-        LOGGER.info("hellko");
+        LOGGER.debug("hellko");
         userService.addUser(userDTOTransformer.transformFromDTO(userDTO));
         return "hello";
     }
