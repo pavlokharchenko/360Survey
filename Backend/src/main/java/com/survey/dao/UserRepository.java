@@ -2,12 +2,13 @@ package com.survey.dao;
 
 
 import com.survey.entity.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Artur Myseliuk
  */
-
-public interface UserRepository  extends CrudRepository<User,String>{
+@Component
+public interface UserRepository extends MongoRepository<User, String> {
 
 }

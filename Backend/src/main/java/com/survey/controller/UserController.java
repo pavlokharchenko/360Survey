@@ -1,13 +1,13 @@
 package com.survey.controller;
 
 
+import com.survey.controller.dto.model.UserDTO;
 import com.survey.controller.dto.transformer.UserDTOTransformer;
 import com.survey.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Artur Myseliuk
@@ -28,9 +28,15 @@ public class UserController {
         return "users";
     }
 
-    @RequestMapping("/")
-    public String hello() {
+    @RequestMapping(value = "/user/{id}", produces = "application/json")
+    public UserDTO getUser(@PathVariable String id){
+        return new UserDTO("ss", "safgasf");
+    }
+
+    @RequestMapping(value = "/user/add/", method = RequestMethod.POST, consumes = "application/json")
+    public String addUser(@RequestBody UserDTO userDTO) {
         LOGGER.info("hellko");
+        userService.addUser(userDTOTransformer.transformFromDTO(userDTO));
         return "hello";
     }
 

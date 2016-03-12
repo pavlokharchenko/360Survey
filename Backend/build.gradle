@@ -19,8 +19,12 @@ configurations {
 dependencies {
     compile 'org.springframework:spring-webmvc:4.2.5.RELEASE'
     compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
+
 
     compile 'org.springframework.data:spring-data-mongodb:1.8.4.RELEASE'
+
 
     //LOGGING
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'

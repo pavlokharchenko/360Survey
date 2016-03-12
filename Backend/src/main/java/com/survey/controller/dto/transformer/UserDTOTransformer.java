@@ -18,7 +18,10 @@ public class UserDTOTransformer implements DTOTransformer<User, UserDTO> {
 
     @Override
     public User transformFromDTO(UserDTO object) {
-        return null;
+        User user = new User();
+        user.setEmail(object.getEmail());
+        user.setName(object.getName());
+        return user;
     }
 
     @Override

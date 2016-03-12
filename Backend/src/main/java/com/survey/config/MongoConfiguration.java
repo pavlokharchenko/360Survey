@@ -18,24 +18,24 @@ import java.util.Collections;
  * @author Artur Myseliuk
  */
 @Configuration
-@EnableMongoRepositories
+@EnableMongoRepositories(basePackages = {"com.survey.dao", "com.survey.entity"})
 @PropertySource(value = "classpath:360Survey.properties")
 public class MongoConfiguration {
 
-    @Value(value = "mongo.server.host")
+    @Value("${mongo.server.host}")
     private String mongoServerHost;
-    @Value(value = "mongo.server.port")
-    private String mongoServerPost;
-    @Value(value = "mongo.server.password")
+    @Value("${mongo.server.port}")
+    private String mongoServerPort;
+    @Value("${mongo.server.password}")
     private String mongoServerPassword;
-    @Value(value = "mongo.server.user")
+    @Value("${mongo.server.user}")
     private String mongoServerUser;
-    @Value(value = "mongo.db.name")
+    @Value("${mongo.db.name}")
     private String mongoDatabaseName;
 
     @Bean
     public MongoDbFactory mongoDbFactory() throws Exception {
-        return new SimpleMongoDbFactory(new MongoClient(new ServerAddress(mongoServerHost, Integer.valueOf(mongoServerPost)),
+        return new SimpleMongoDbFactory(new MongoClient(new ServerAddress(mongoServerHost, Integer.valueOf(mongoServerPort)),
                         Collections.singletonList(MongoCredential.createCredential(mongoServerUser, mongoDatabaseName, mongoServerPassword.toCharArray()))),
                 mongoDatabaseName);
     }
