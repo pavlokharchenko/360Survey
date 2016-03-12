@@ -6,7 +6,6 @@ package com.survey.entity;
 
 /**
  * @author Taras Danilchuk
- *
  */
-public class Result {
+public class Result extends AbstractDocument {
 }

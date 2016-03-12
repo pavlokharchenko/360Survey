@@ -4,16 +4,13 @@ package com.survey.entity;
  * User.java 12.03.2016, 2016
  */
 
-import org.springframework.data.annotation.Id;
-
 import java.util.Objects;
 
 /**
  * @author Taras Danilchuk
  */
-public class User {
-    @Id
-    private String id;
+public class User extends AbstractDocument {
+
     private String name;
     private String email;
 
