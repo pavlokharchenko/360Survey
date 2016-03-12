@@ -13,4 +13,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @ComponentScan("com.survey")
 public class AppConfiguration extends WebMvcConfigurerAdapter {
+
 }
