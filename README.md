@@ -31,3 +31,30 @@ Using a 360 degree feedback system for Performance Appraisal is a common practic
  - 360 feedback should not be used to measure strictly objective things such as attendance, sales quotas, etc.
 
 General reqs: https://docs.google.com/document/d/1P00V9DeT2bD7nFRBDSwOFsJwvQ2GLTupswYjhjiTEeY/edit#heading=h.2r8px7okdmtq
+
+## How to deploy to Docker on local machine
+- Install Docker Toolbox: https://www.docker.com/products/docker-toolbox
+- Run Docker CLI
+- Go to the folder where Dockerfile is located
+- To create image based on Ubuntu use following command:
+
+> docker build -t hexus/ubuntu-survey-web-ui .
+
+- To run created image use following command:
+
+> docker run -p 3000:3000 -d --name survey-ui hexus/ubuntu-survey-web-ui
+
+
+## How to deploy to Docker frontend and backend in sepparate containers:
+
+- Create image for backend mockup:
+
+>docker build -t hexus/ubuntu-survey-web-backend .
+
+- Run backend image
+
+> docker run -p 3001:3001 -d --name survey-backend hexus/ubuntu-survey-web-backend
+
+- Run image with Survey Web UI and link it to survey-backend
+
+> docker run -p 3000:3000 -d --name survey-ui --link survey-backend:survey-backend hexus/ubuntu-survey-web-ui
