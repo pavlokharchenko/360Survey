@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Taras Danilchuk
- *
  */
 
 @Component
@@ -26,6 +25,11 @@ public class UserDTOTransformer implements DTOTransformer<User, UserDTO> {
 
     @Override
     public UserDTO transformToDTO(User object) {
-        return null;
+        return UserDTO.builder().setName(object.getName()).setEmail(object.getEmail()).build();
+    }
+
+    @Override
+    public UserDTO convert(User source) {
+        return transformToDTO(source);
     }
 }

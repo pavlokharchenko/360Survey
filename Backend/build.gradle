@@ -21,10 +21,9 @@ dependencies {
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
-
+    compile 'org.hibernate:hibernate-validator:5.2.4.Final'
 
     compile 'org.springframework.data:spring-data-mongodb:1.8.4.RELEASE'
-
 
     //LOGGING
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'
@@ -36,4 +35,6 @@ dependencies {
 
     //TEST
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+    testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.50.2"
 }

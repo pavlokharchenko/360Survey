@@ -9,7 +9,10 @@
         <Logger name="com.survey" level="debug" additivity="false">
             <AppenderRef ref="console"/>
         </Logger>
-        <Root level="error" >
+        <logger name="org.springframework" level="info" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
+        <Root level="error">
             <AppenderRef ref="console"/>
         </Root>
     </Loggers>

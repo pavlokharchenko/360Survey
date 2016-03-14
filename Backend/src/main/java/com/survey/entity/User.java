@@ -4,15 +4,25 @@ package com.survey.entity;
  * User.java 12.03.2016, 2016
  */
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
 /**
  * @author Taras Danilchuk
  */
-public class User extends AbstractDocument {
+@Document
+public class User {
 
+    @Indexed(unique = true)
     private String name;
+
+    @Id
     private String email;
+
+    private String password;
 
     public String getEmail() {
         return email;

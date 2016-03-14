@@ -3,17 +3,28 @@ package com.survey.controller;
 
 import com.survey.controller.dto.model.UserDTO;
 import com.survey.controller.dto.transformer.UserDTOTransformer;
+import com.survey.entity.User;
 import com.survey.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.validation.Valid;
 
 /**
  * @author Artur Myseliuk
  */
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
     private static final Logger LOGGER = LogManager.getLogger(UserController.class.getName());
 
@@ -23,21 +34,34 @@ public class UserController {
     @Autowired
     private UserDTOTransformer userDTOTransformer;
 
-    @RequestMapping("/users/")
-    public String getUsers() {
-        return "users";
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Page<UserDTO>> getUsers(Pageable pageable) {
+        return new ResponseEntity<>(userService.findAllUsers(pageable).map(userDTOTransformer), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/{id}", produces = "application/json")
-    public UserDTO getUser(@PathVariable String id){
-        return new UserDTO("ss", "safgasf");
+    @RequestMapping(value = "/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserDTO> getUser(@PathVariable String email) {
+        UserDTO user = userDTOTransformer.transformToDTO(userService.findByEmail(email));
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/add/", method = RequestMethod.POST, consumes = "application/json")
-    public String addUser(@RequestBody UserDTO userDTO) {
-        LOGGER.debug("hellko");
-        userService.addUser(userDTOTransformer.transformFromDTO(userDTO));
-        return "hello";
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> saveUser(@Valid @RequestBody UserDTO userDTO, UriComponentsBuilder ucBuilder) {
+        User user = userDTOTransformer.transformFromDTO(userDTO);
+
+        if (userService.isUserExist(user)) {
+            LOGGER.warn("A User with name " + user.getName() + " already exist");
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        userService.saveUser(user);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/users/{email}").buildAndExpand(user.getEmail()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
 }
