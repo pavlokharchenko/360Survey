@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
  * @author Taras Danilchuk
  */
 public class UserDTO {
+
     @NotEmpty
     @Size(min = 4, max = 64)
     private String name;

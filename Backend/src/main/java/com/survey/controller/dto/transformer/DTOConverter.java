@@ -8,9 +8,7 @@ import org.springframework.core.convert.converter.Converter;
 
 /**
  * @author Taras Danilchuk
- *
  */
-public interface DTOTransformer<T, Y> extends Converter<T, Y> {
-    T transformFromDTO(Y object);
-    Y transformToDTO(T object);
+public interface DTOConverter<S, T> extends Converter<S, T> {
+    S convertFromDTO(T object);
 }

@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class UserDTOTransformer implements DTOTransformer<User, UserDTO> {
+public class UserDTOConverter implements DTOConverter<User, UserDTO> {
 
     @Override
-    public User transformFromDTO(UserDTO object) {
+    public User convertFromDTO(UserDTO object) {
         User user = new User();
         user.setEmail(object.getEmail());
         user.setName(object.getName());
@@ -24,12 +24,7 @@ public class UserDTOTransformer implements DTOTransformer<User, UserDTO> {
     }
 
     @Override
-    public UserDTO transformToDTO(User object) {
-        return UserDTO.builder().setName(object.getName()).setEmail(object.getEmail()).build();
-    }
-
-    @Override
     public UserDTO convert(User source) {
-        return transformToDTO(source);
+        return UserDTO.builder().setName(source.getName()).setEmail(source.getEmail()).build();
     }
 }

@@ -15,26 +15,32 @@ import java.util.List;
  */
 @Service
 public class UserServiceBean implements UserService {
+
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public void saveUser(User user) {
+    public void save(User user) {
         userRepository.save(user);
     }
 
     @Override
-    public User findByEmail(String email) {
+    public User find(String email) {
         return userRepository.findOne(email);
     }
 
     @Override
-    public boolean isUserExist(User user) {
+    public boolean isExist(User user) {
         return userRepository.exists(user.getEmail());
     }
 
     @Override
-    public Page<User> findAllUsers(Pageable pageable) {
+    public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

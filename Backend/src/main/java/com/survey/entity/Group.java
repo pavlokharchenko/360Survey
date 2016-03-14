@@ -1,5 +1,6 @@
 package com.survey.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.List;
@@ -7,8 +8,9 @@ import java.util.List;
 /**
  * @author Taras Danilchuk
  */
-public class Group extends AbstractDocument {
+public class Group {
 
+    @Id
     private String name;
     @DBRef
     private User author;
@@ -29,5 +31,13 @@ public class Group extends AbstractDocument {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

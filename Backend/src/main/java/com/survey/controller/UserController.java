@@ -2,7 +2,7 @@ package com.survey.controller;
 
 
 import com.survey.controller.dto.model.UserDTO;
-import com.survey.controller.dto.transformer.UserDTOTransformer;
+import com.survey.controller.dto.transformer.UserDTOConverter;
 import com.survey.entity.User;
 import com.survey.service.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -32,16 +32,16 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private UserDTOTransformer userDTOTransformer;
+    private UserDTOConverter userDTOConverter;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<UserDTO>> getUsers(Pageable pageable) {
-        return new ResponseEntity<>(userService.findAllUsers(pageable).map(userDTOTransformer), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAll(pageable).map(userDTOConverter), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> getUser(@PathVariable String email) {
-        UserDTO user = userDTOTransformer.transformToDTO(userService.findByEmail(email));
+        UserDTO user = userDTOConverter.convert(userService.find(email));
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,14 +50,14 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveUser(@Valid @RequestBody UserDTO userDTO, UriComponentsBuilder ucBuilder) {
-        User user = userDTOTransformer.transformFromDTO(userDTO);
+        User user = userDTOConverter.convertFromDTO(userDTO);
 
-        if (userService.isUserExist(user)) {
-            LOGGER.warn("A User with name " + user.getName() + " already exist");
+        if (userService.isExist(user)) {
+            LOGGER.warn("A User with e-mail " + user.getEmail() + " is already exist");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        userService.saveUser(user);
+        userService.save(user);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/users/{email}").buildAndExpand(user.getEmail()).toUri());

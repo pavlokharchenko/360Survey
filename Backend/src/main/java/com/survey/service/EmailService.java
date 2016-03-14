@@ -1,15 +1,8 @@
 package com.survey.service;
 
 /**
- * EmailService.java 12.03.2016, 2016
+ * @author Taras Danylchuk. Created on 14.03.2016.
  */
 
-import org.springframework.stereotype.Service;
-
-/**
- * @author Taras Danilchuk
- *
- */
-@Service
-public class EmailService {
+public interface EmailService {
 }

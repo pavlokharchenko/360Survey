@@ -1,6 +1,6 @@
 package com.survey.controller;
 
-import com.survey.controller.dto.model.ErrorMessageDTO;
+import com.survey.controller.dto.model.ErrorMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +22,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ErrorMessageDTO errorMessage = new ErrorMessageDTO(ex.getBindingResult().getFieldErrors().stream()
+        ErrorMessage errorMessage = new ErrorMessage(ex.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)),
                 ex.getBindingResult().getGlobalErrors().stream()
                         .collect(Collectors.toMap(ObjectError::getObjectName, ObjectError::getDefaultMessage)));
