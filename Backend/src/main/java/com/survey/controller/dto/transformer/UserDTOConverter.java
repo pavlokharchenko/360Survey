@@ -25,6 +25,7 @@ public class UserDTOConverter implements DTOConverter<User, UserDTO> {
 
     @Override
     public UserDTO convert(User source) {
-        return UserDTO.builder().setName(source.getName()).setEmail(source.getEmail()).build();
+        return UserDTO.builder()
+                .name(source.getName()).email(source.getEmail()).build();
     }
 }
