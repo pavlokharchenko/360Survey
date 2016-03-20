@@ -1,8 +1,22 @@
 group '360survey'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'http://repo.spring.io/milestone' }
+    }
+    dependencies {
+        classpath "io.franzbecker:gradle-lombok:1.6"
+    }
+}
+
+apply plugin: "io.franzbecker.gradle-lombok"
+
 apply plugin: 'java'
 apply plugin: 'war'
+
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -14,6 +28,7 @@ repositories {
 configurations {
     all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
     all*.exclude group: "log4j", module: "log4j"
+
 }
 
 dependencies {
